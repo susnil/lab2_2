@@ -48,4 +48,11 @@ public class MoneyTest {
         Money expectedPrice = new Money( 50, "PLN" );
         assertThat( price200PLN.subtract(price150PLN), is( expectedPrice ) );
     }
+    @Test
+    public void multiplyMoney() throws Exception {
+        Money price25PLN = new Money(25, "PLN" );
+        double multiplyRate = 8;
+        Money expectedPrice = new Money(200, "PLN" );
+        assertThat( price25PLN.multiplyBy( multiplyRate ), is( expectedPrice ) );
+    }
 }
