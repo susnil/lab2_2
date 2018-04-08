@@ -1,6 +1,8 @@
 import org.junit.Test;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
+import java.math.BigDecimal;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -49,10 +51,18 @@ public class MoneyTest {
         assertThat( price200PLN.subtract(price150PLN), is( expectedPrice ) );
     }
     @Test
-    public void multiplyMoney() throws Exception {
+    public void multiplyMoneyWithDouble() throws Exception {
         Money price25PLN = new Money(25, "PLN" );
         double multiplyRate = 8;
         Money expectedPrice = new Money(200, "PLN" );
         assertThat( price25PLN.multiplyBy( multiplyRate ), is( expectedPrice ) );
     }
+    @Test
+    public void multiplyMoneyWithBigDecimal() throws Exception {
+        Money price25PLN = new Money(25, "PLN" );
+        BigDecimal multiplyRate = new BigDecimal(8.02);
+        Money expectedPrice = new Money(200.5, "PLN" );
+        assertThat( price25PLN.multiplyBy( multiplyRate ), is( expectedPrice ) );
+    }
+
 }
