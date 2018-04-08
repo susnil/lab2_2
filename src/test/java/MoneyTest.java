@@ -11,4 +11,12 @@ public class MoneyTest {
         Money expectedPrice = new Money( 200, "PLN" );
         assertThat( price100PLN.add(price100PLN), is( expectedPrice ) );
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void addMoneyInTheDifferentCurrency() throws Exception{
+        Money price100PLN = new Money(100, "PLN" );
+        Money price100USD = new Money(100, "USD" );
+        Money expectedPrice = new Money( 200, "PLN" );
+        assertThat( price100PLN.add(price100USD), is( expectedPrice ) );
+    }
 }
