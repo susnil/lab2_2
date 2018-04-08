@@ -19,4 +19,19 @@ public class MoneyTest {
         Money expectedPrice = new Money( 200, "PLN" );
         assertThat( price100PLN.add(price100USD), is( expectedPrice ) );
     }
+    @Test
+    public void subtractMoneyInTheSameCurrency() throws Exception{
+        Money price200PLN = new Money(200, "PLN" );
+        Money price150PLN = new Money(150, "PLN" );
+        Money expectedPrice = new Money( 50, "PLN" );
+        assertThat( price200PLN.subtract(price150PLN), is( expectedPrice ) );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void subtractMoneyInTheDifferentCurrency() throws Exception{
+        Money price200PLN = new Money(200, "PLN" );
+        Money price150PLN = new Money(150, "USD" );
+        Money expectedPrice = new Money( 50, "PLN" );
+        assertThat( price200PLN.subtract(price150PLN), is( expectedPrice ) );
+    }
 }
